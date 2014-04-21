@@ -13,6 +13,8 @@ public class Pants implements IItem{
         this.size = size;
         this.color = color;
         this.price = price;
+
+        this.setsaleStatus("Unsold");
     }
 
     public String getSize() {
@@ -25,6 +27,11 @@ public class Pants implements IItem{
 
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public String getSalesStatus() {
+        return saleStatus;
     }
 
     @Override
@@ -44,15 +51,5 @@ public class Pants implements IItem{
         saleStatus = memento.getOriginalsaleStatus();
     }
 
-    public class Memento{
-        private final String saleStatus;
 
-        public Memento(String originalsaleStatus) {
-            saleStatus = originalsaleStatus;
-        }
-
-        public String getOriginalsaleStatus() {
-            return saleStatus;
-        }
-    }
 }

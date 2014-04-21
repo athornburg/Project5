@@ -8,11 +8,14 @@ public class Hat implements IItem {
     public String color;
     public boolean adjustable;
     public String type;
+    public int price;
 
-    public Hat(String color,boolean adjustable,String type){
+    public Hat(String color,boolean adjustable,String type, int price){
         this.color = color;
         this.adjustable = adjustable;
         this.type = type;
+        this.price = price;
+        this.setsaleStatus("Unsold");
     }
 
     public String getColor() {
@@ -26,6 +29,17 @@ public class Hat implements IItem {
     public String getType() {
         return type;
     }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getSalesStatus() {
+        return saleStatus;
+    }
+
 
     @Override
     public String accept(ICartVisitor visitor) {
@@ -42,18 +56,6 @@ public class Hat implements IItem {
 
     public void restorePrevioussaleStatus(Memento memento) {
         saleStatus = memento.getOriginalsaleStatus();
-    }
-
-    public class Memento{
-        private final String saleStatus;
-
-        public Memento(String originalsaleStatus) {
-            saleStatus = originalsaleStatus;
-        }
-
-        public String getOriginalsaleStatus() {
-            return saleStatus;
-        }
     }
     
 }
