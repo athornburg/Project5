@@ -9,11 +9,13 @@ public class TShirt implements IItem{
     private String graphic;
     private String color;
     private String size;
+    private int price;
 
-    public TShirt(String graphic,String color,String size){
+    public TShirt(String graphic,String color,String size, int price){
         this.graphic = graphic;
         this.color = color;
         this.size = size;
+        this.setsaleStatus("Unsold");
     }
 
     public String getGraphic() {
@@ -33,6 +35,16 @@ public class TShirt implements IItem{
         return visitor.visit(this);
     }
 
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getSalesStatus() {
+        return saleStatus;
+    }
+
     public void setsaleStatus(String saleStatus) {
         this.saleStatus = saleStatus;
     }
@@ -45,15 +57,4 @@ public class TShirt implements IItem{
         saleStatus = memento.getOriginalsaleStatus();
     }
 
-    public class Memento{
-        private final String saleStatus;
-
-        public Memento(String originalsaleStatus) {
-            saleStatus = originalsaleStatus;
-        }
-
-        public String getOriginalsaleStatus() {
-            return saleStatus;
-        }
-    }
 }

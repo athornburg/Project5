@@ -9,4 +9,9 @@ public interface ICartVisitor {
     public String visit(Socks socks);
     public String visit(Hat hat);
 
+    public void addItem(IItem item);
+
+    public void viewCart();
+    void checkOut();
+    void cancelOrder();
 }

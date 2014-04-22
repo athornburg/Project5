@@ -3,7 +3,7 @@
  * Date: 4/21/14
  * Time: 1:08 PM
  */
-public class Socks implements IItem{
+public class Socks implements IItem {
     private String saleStatus;
     public String color;
     public int price;
@@ -15,6 +15,8 @@ public class Socks implements IItem{
         this.price = price;
         this.brand = brand;
         this.size = size;
+        this.setsaleStatus("Unsold");
+
     }
 
     public String getSize() {
@@ -33,32 +35,31 @@ public class Socks implements IItem{
         return brand;
     }
 
+
+    @Override
+    public String getSalesStatus() {
+        return saleStatus;
+    }
+
     @Override
     public String accept(ICartVisitor visitor) {
         return visitor.visit(this);
     }
 
+    @Override
     public void setsaleStatus(String saleStatus) {
         this.saleStatus = saleStatus;
     }
 
+    @Override
     public Memento savesaleStatus() {
         return new Memento(saleStatus);
     }
 
+    @Override
     public void restorePrevioussaleStatus(Memento memento) {
         saleStatus = memento.getOriginalsaleStatus();
     }
 
-    public class Memento{
-        private final String saleStatus;
 
-        public Memento(String originalsaleStatus) {
-            saleStatus = originalsaleStatus;
-        }
-
-        public String getOriginalsaleStatus() {
-            return saleStatus;
-        }
-    }
 }
